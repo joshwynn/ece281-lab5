@@ -11,7 +11,7 @@ use IEEE.numeric_std.all;
 entity twoscomp_decimal is
     port (
         i_binary: in std_logic_vector(7 downto 0);
-        o_negative: out std_logic;
+        o_negative: out std_logic_vector(3 downto 0);
         o_hundreds: out std_logic_vector(3 downto 0);
         o_tens: out std_logic_vector(3 downto 0);
         o_ones: out std_logic_vector(3 downto 0)
@@ -26,10 +26,10 @@ begin
     begin
         binary_value := to_integer(signed(i_binary));
         if binary_value < 0 then
-            o_negative <= '1';
+            o_negative <= "1111";
             decimal_value := -binary_value;
         else
-            o_negative <= '0';
+            o_negative <= "1110";
             decimal_value := binary_value;
         end if;
         
